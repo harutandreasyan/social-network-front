@@ -2,10 +2,12 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { IResponse, IUser } from "../../helpers/types";
 import { METHODS, useHttpMutation } from "../../helpers/useHttp";
+import { useState } from "react";
 
 export const Signup = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<IUser>()
     const [postSignup, error] = useHttpMutation<IResponse, IUser>(reset)
+    const [showPassword, setShowPassword] = useState<boolean>(false)
 
     return (
         <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
@@ -23,12 +25,12 @@ export const Signup = () => {
                             htmlFor="name"
                             className="block text-sm font-medium text-gray-300 mb-1"
                         >
-                            name
+                            Name
                         </label>
                         <input
                             {...register("name", { required: "Name is required" })}
                             type="text"
-                            placeholder="Enter your full name"
+                            placeholder="Enter your name"
                             className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
@@ -39,13 +41,13 @@ export const Signup = () => {
                             htmlFor="name"
                             className="block text-sm font-medium text-gray-300 mb-1"
                         >
-                            surname
+                            Surname
                         </label>
                         <input
                             {...register("surname", { required: "Surname is required" })}
 
                             type="text"
-                            placeholder="Enter your full name"
+                            placeholder="Enter your surname"
                             className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
@@ -59,7 +61,13 @@ export const Signup = () => {
                             Login
                         </label>
                         <input
-                            {...register("login", { required: "Login is required" })}
+                            {...register("login", {
+                                required: "Login is required",
+                                minLength: {
+                                    value: 6,
+                                    message: "Login must be at least 6 characters long"
+                                }
+                            })}
 
                             placeholder="Enter your login"
                             className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -67,7 +75,7 @@ export const Signup = () => {
                     </div>
 
                     {errors.password && <p className="text-red-400">{errors.password.message}</p>}
-                    <div className="mb-4">
+                    <div className="mb-4 relative">
                         <label
                             htmlFor="password"
                             className="block text-sm font-medium text-gray-300 mb-1"
@@ -75,7 +83,7 @@ export const Signup = () => {
                             Password
                         </label>
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: {
@@ -92,7 +100,17 @@ export const Signup = () => {
                             placeholder="Enter your password"
                             className="w-full px-4 py-2 bg-gray-700 text-white rounded"
                         />
-
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute inset-y-2 right-3 flex items-center justify-center h-full focus:outline-none"
+                        >
+                            <img
+                                src={showPassword ? "/images/close-eye.png" : "/images/view.png"}
+                                alt={showPassword ? "Hide Password" : "Show Password"}
+                                className="w-6 h-6"
+                            />
+                        </button>
                     </div>
 
                     <button

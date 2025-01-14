@@ -2,11 +2,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { IAuth, IResponse } from "../../helpers/types";
 import { METHODS, useHttpMutation } from "../../helpers/useHttp";
+import { useState } from "react";
 
 export const Login = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<IAuth>()
   const [postLogin, error] = useHttpMutation<IResponse, IAuth>(() => navigate('/profile'))
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const handleLogin: SubmitHandler<IAuth> = data => {
     postLogin("/login", METHODS.POST, data)
@@ -36,7 +38,7 @@ export const Login = () => {
           </div>
 
           {errors.password && <p className="text-red-400">{errors.password.message}</p>}
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-300 mb-1"
@@ -44,12 +46,23 @@ export const Login = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               {...register("password", { required: 'Password is required' })}
               id="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-2 right-3 flex items-center justify-center h-full focus:outline-none"
+            >
+              <img
+                src={showPassword ? "/images/close-eye.png" : "/images/view.png"}
+                alt={showPassword ? "Hide Password" : "Show Password"}
+                className="w-6 h-6"
+              />
+            </button>
           </div>
 
           <button

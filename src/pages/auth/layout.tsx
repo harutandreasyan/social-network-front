@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { METHODS, useHttpMutation, useHttpQuery } from '../../helpers/useHttp';
 import { IResponse } from '../../helpers/types';
 
@@ -13,7 +13,7 @@ export const Layout = () => {
     ]
     
     const navigate = useNavigate()
-    const { data, loading } = useHttpQuery<IResponse>("/verify")
+    const { data, loading, refetch } = useHttpQuery<IResponse>("/verify")
     const [logout] = useHttpMutation<IResponse>(() => navigate('/'))
 
     if (loading) {
@@ -24,16 +24,17 @@ export const Layout = () => {
         <div className="min-h-screen bg-gray-900 text-gray-200">
             <nav className="bg-gray-800 shadow-md">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-                    <h1 className="text-2xl font-bold text-blue-400">AraratGram</h1>
+                    <h1 className="text-2xl font-bold text-blue-400">Social</h1>
                     <ul className="flex space-x-6">
                         {links.map((link, index) => (
                             <li key={index}>
-                                <Link
+                                <NavLink
+                                    end
                                     to={link.href}
                                     className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition"
                                 >
                                     {link.name}
-                                </Link>
+                                </NavLink>
                             </li>
                         ))}
                         <li>
@@ -45,7 +46,7 @@ export const Layout = () => {
 
             <main className="container mx-auto px-4 py-6">
                 <Outlet
-                    context={{ user: data.user }}
+                    context={{ user: data.user, refetch }}
                 />
             </main>
         </div>
