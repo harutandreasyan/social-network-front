@@ -6,19 +6,24 @@ export interface IUser {
     password: string
     cover: string
     picture: string
+    isPrivate: number
     followers: IUser[]
     following: IUser[]
+    posts: IPostResponse[]
 }
 
 export interface IAccount extends IUser {
-    posts: unknown
-    isPrivate: number
     connection: {
         followsMe: boolean
         following: boolean
         requested: boolean
     }
 }
+
+export interface IRequest {
+    id: number
+    user: IUser
+} 
 
 export interface IResponse {
     status: string
@@ -46,9 +51,12 @@ export interface IPost {
 }
 
 export interface IPostResponse {
-    id: string
+    id: number
     title: string
     picture: string
-    userId: string
+    userId: number
     likes: IUser[]
+    comments: string[]
+    isLiked: boolean
+    hashtags: string[]
 }

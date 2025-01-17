@@ -106,7 +106,7 @@ export const Signup = () => {
                             className="absolute inset-y-2 right-3 flex items-center justify-center h-full focus:outline-none"
                         >
                             <img
-                                src={showPassword ? "/images/close-eye.png" : "/images/view.png"}
+                                src={showPassword ? "/images/view.png" : "/images/close-eye.png"}
                                 alt={showPassword ? "Hide Password" : "Show Password"}
                                 className="w-6 h-6"
                             />

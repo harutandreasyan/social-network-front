@@ -5,6 +5,9 @@ import { Layout } from "../pages/auth/layout";
 import { Profile } from "../pages/auth/profile";
 import { Settings } from "../pages/auth/settings";
 import { Account } from "../pages/auth/account";
+import { Followers } from "../pages/auth/followers";
+import { Followings } from "../pages/auth/followings";
+import { Requests } from "../pages/auth/requests";
 
 export const routes = createBrowserRouter([
     { path: '', element: <Login /> },
@@ -15,7 +18,10 @@ export const routes = createBrowserRouter([
         children: [
             { path: '', element: <Profile /> },
             { path: 'settings', element: <Settings /> },
-            { path: ':id', element: <Account /> }
+            { path: ':id', element: <Account /> },
+            { path: 'followers', element: <Followers /> },
+            { path: 'followings', element: <Followings /> },
+            { path: 'requests', element: <Requests /> },
         ]
     }
 ])

@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { IContext } from "../../../helpers/types";
 import { ProfileHeader } from "./components/profile-header";
 import { Search } from "./components/search";
-import { Feed } from "./components/Feed";
+import { Feed } from "./components/feed";
 
 export const Profile = () => {
     const { user } = useOutletContext<IContext>();
@@ -23,5 +23,5 @@ export const Profile = () => {
                 </div>
             </div>
         )
-    );
-};
+    )
+}

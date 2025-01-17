@@ -1,4 +1,5 @@
 import { UpdateLogin } from "./components/update-login";
+import { UpdatePrivacy } from "./components/update-privacy";
 import { UpdatePassword } from "./components/update-pwd";
 
 export const Settings = () => {
@@ -8,6 +9,7 @@ export const Settings = () => {
       <div className="flex flex-col lg:flex-row gap-8">
         <UpdatePassword />
         <UpdateLogin />
+        <UpdatePrivacy />
       </div>
     </div>
   )

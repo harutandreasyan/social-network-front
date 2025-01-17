@@ -5,3 +5,9 @@
 .active {
     color: yellowgreen
 }
+
+.description {
+    white-space: pre-wrap; /* Preserves whitespace and enables wrapping */
+    word-wrap: break-word; /* Breaks long words to avoid overflow */
+    /* overflow-wrap: anywhere; */
+}

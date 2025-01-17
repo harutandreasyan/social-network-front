@@ -1,5 +1,5 @@
-import { AddPost } from "./AddPost";
-import { Gallery } from "./Gallery";
+import { AddPost } from "./add-post";
+import { Gallery } from "./gallery";
 
 export const Feed = () => {
     return (
@@ -12,5 +12,5 @@ export const Feed = () => {
                 <Gallery />
             </div>
         </div>
-    );
-};
+    )
+}

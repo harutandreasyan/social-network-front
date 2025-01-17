@@ -21,7 +21,6 @@ export const AddPost = () => {
 
     const handleUpload = () => {
         const file = photo.current?.files?.[0];
-        console.log(file)
         if (!file || !description.trim()) return;
         const form = new FormData();
         form.append("photo", file);

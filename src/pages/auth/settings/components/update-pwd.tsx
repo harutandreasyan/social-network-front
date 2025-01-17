@@ -40,7 +40,7 @@ export const UpdatePassword = () => {
                         className="absolute inset-y-11 right-3 flex items-center focus:outline-none"
                     >
                         <img
-                            src={showOldPassword ? "/images/close-eye.png" : "/images/view.png"}
+                            src={showOldPassword ? "/images/view.png" : "/images/close-eye.png"}
                             alt={showOldPassword ? "Hide Password" : "Show Password"}
                             className="w-6 h-6"
                         />
@@ -75,7 +75,7 @@ export const UpdatePassword = () => {
                         className="absolute inset-y-11 right-3 flex items-center focus:outline-none"
                     >
                         <img
-                            src={showNewPassword ? "/images/close-eye.png" : "/images/view.png"}
+                            src={showNewPassword ? "/images/view.png" : "/images/close-eye.png"}
                             alt={showNewPassword ? "Hide Password" : "Show Password"}
                             className="w-6 h-6"
                         />
